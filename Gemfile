@@ -11,6 +11,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'active_hash'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'mandrill-api'
+gem 'rails_12factor'
 
 group :development do
   gem "spring"
