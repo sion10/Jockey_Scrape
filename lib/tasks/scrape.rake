@@ -17,6 +17,8 @@ namespace :scrape do
         puts url
         data = Nokogiri::HTML(open(url))
         distance = data.css('table > tbody > tr > td > span.number14')
+        # puts "distance"
+        # puts distance
         OneLine(data, j, distance)
         j += 1
       end
