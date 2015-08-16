@@ -6,18 +6,18 @@ namespace :scrape do
   task :race_results => :environment do
 
     url = "http://racing.hkjc.com/racing/Info/Meeting/Results/English"
-    parsed_data = Nokogiri::HTML(open(url))
+    parse_data = Nokogiri::HTML(open(url))
     
     i = 0
-    
-    while (i <= 1) do
+    while (i <= 11) do
       j = 1
-      next_page = parsed_data.css('#raceDateSelect > option')[i].attr('value')
+      next_page = parse_data.css('#raceDateSelect > option')[i].attr('value')
       while (j <= 16) do
         url = "http://racing.hkjc.com/racing/Info/Meeting/Results/English/#{next_page}/#{j}"
         puts url
         data = Nokogiri::HTML(open(url))
-        OneLine(data, j)
+        distance = data.css('table > tbody > tr > td > span.number14')
+        OneLine(data, j, distance)
         j += 1
       end
       i += 1
@@ -26,8 +26,8 @@ namespace :scrape do
   end
 end
 
-def OneLine(parsed_data, j)
-  distance = parsed_data.css('table > tbody > tr > td > span.number14')
+def OneLine(parsed_data, j, distance)
+  # distance = distance
   # distance = "1234m"
   date = parsed_data.css('#raceDateSelect option[@selected="selected"]')
   racenumber = j
