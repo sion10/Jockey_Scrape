@@ -16,10 +16,7 @@ namespace :scrape do
         url = "http://racing.hkjc.com/racing/Info/Meeting/Results/English/#{next_page}/#{j}"
         puts url
         data = Nokogiri::HTML(open(url))
-        distance = data.css('table > tbody > tr > td > span.number14')
-        # puts "distance"
-        # puts distance
-        OneLine(data, j, distance)
+        OneLine(data, j)
         j += 1
       end
       i += 1
@@ -28,7 +25,8 @@ namespace :scrape do
   end
 end
 
-def OneLine(parsed_data, j, distance)
+def OneLine(parsed_data, j)
+  distance = parsed_data.css('table > tbody > tr > td > span.number14')
   # distance = distance
   # distance = "1234m"
   date = parsed_data.css('#raceDateSelect option[@selected="selected"]')
