@@ -12,11 +12,6 @@ class Race
   field :horseweight, type: Integer
   field :draw, type: String
   field :lbw, type: String
-  field :runningposition1, type: Integer
-  field :runningposition2, type: Integer
-  field :runningposition3, type: Integer
-  field :runningposition4, type: Integer
-  field :runningposition5, type: Integer
   field :finishtime, type: String
   field :odd, type: Float
 end
